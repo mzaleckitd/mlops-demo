@@ -1,0 +1,4 @@
+[core]
+    remote = aws
+['remote "aws"']
+    url = s3://pandas-vision/machine_learning/dvc-test/

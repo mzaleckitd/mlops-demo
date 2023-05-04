@@ -1,0 +1,7 @@
+model:
+  model_path: models/edge/base/model_edge_224x224
+
+training:
+  epochs: 10
+  batch_size: 32
+  learning_rate: 0.0001

@@ -1,0 +1,27 @@
+datasets:
+  train:
+    images: data-prepared/edge/images/train
+    masks:  data-prepared/edge/masks/train
+
+  valid:
+    images: data-prepared/edge/images/valid
+    masks:  data-prepared/edge/masks/valid
+
+  test:
+    images: data-prepared/edge/images/test
+    masks:  data-prepared/edge/masks/test
+
+
+mlflow:
+  dirpath: mlruns/
+
+  experiments:
+    train:
+      name: final-training
+      config_file: config/mlflow/train.yaml
+
+    hyperopt:
+      name: hyperopt-training
+
+    notebook:
+      name: notebooks

@@ -1,0 +1,58 @@
+copying:
+  input_dirpath: data-raw/
+  output_dirpath: data-prepared/
+
+splitting:
+  train: 0.70
+  valid: 0.15
+  test:  0.15
+
+flipping:
+  flip_left_right:
+    apply: true
+    transform:
+      __class_fullname__: Compose
+      additional_targets: {}
+      bbox_params: null
+      keypoint_params: null
+      p: 1.0
+      transforms:
+      - __class_fullname__: HorizontalFlip
+        p: 1.0
+
+  flip_top_bottom:
+    apply: false
+    transform:
+      __class_fullname__: Compose
+      additional_targets: { }
+      bbox_params: null
+      keypoint_params: null
+      p: 1.0
+      transforms:
+        - __class_fullname__: VerticalFlip
+          p: 1.0
+
+augmenting:
+  augmentations_per_image: 2
+  augmentations:
+
+    - transform:
+        __class_fullname__: Compose
+        additional_targets: { }
+        bbox_params: null
+        keypoint_params: null
+        p: 1.0
+        transforms:
+          - __class_fullname__: Blur
+            p: 1.0
+
+    - transform:
+        __class_fullname__: Compose
+        additional_targets: { }
+        bbox_params: null
+        keypoint_params: null
+        p: 1.0
+        transforms:
+          - __class_fullname__: Rotate
+            limit: 5
+            p: 1.0

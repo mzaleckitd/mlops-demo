@@ -6,7 +6,7 @@ import mlflow
 import tensorflow as tf
 from hyperopt import fmin, tpe, hp, STATUS_OK, Trials
 
-from datasets import create_datagen, ImageSegmentationDataGen
+from datasets import ImageSegmentationDataGen
 from metrics import iou_score
 from model import load_model
 from tools import register_experiment, read_yaml_config
@@ -44,13 +44,12 @@ def train(params):
             data_generators['train'],
             validation_data=data_generators['valid'],
             epochs=int(params['epochs']),
-            # steps_per_epoch=100,
-            # validation_steps=20,
+            steps_per_epoch=10,
+            validation_steps=5,
         )
 
         # testing
-        # _, acc, iou = model.evaluate(data_generators['test'], steps=20)
-        _, acc, iou = model.evaluate(data_generators['test'])
+        _, acc, iou = model.evaluate(data_generators['test'], steps=5)
         mlflow.log_metric('test_accuracy', acc)
         mlflow.log_metric('test_iou_score', iou)
 

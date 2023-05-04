@@ -53,12 +53,12 @@ def main(config_filepath: Union[str, pathlib.Path]):
             data_generators['train'],
             validation_data=data_generators['valid'],
             epochs=config_train['training']['epochs'],
-            steps_per_epoch=100,
-            validation_steps=10,
+            steps_per_epoch=10,
+            validation_steps=5,
         )
 
         # testing
-        _, acc, iou = model.evaluate(data_generators['test'], steps=10)
+        _, acc, iou = model.evaluate(data_generators['test'], steps=5)
         mlflow.log_metric('test_accuracy', acc)
         mlflow.log_metric('test_iou_score', iou)
 
